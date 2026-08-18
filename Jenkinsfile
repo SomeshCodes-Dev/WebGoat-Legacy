@@ -50,6 +50,8 @@ pipeline {
                     IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
                 }
             }
+        }
+
 stage("Publish to Repo"){
     steps{
             script {

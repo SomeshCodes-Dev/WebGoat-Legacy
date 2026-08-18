@@ -33,7 +33,7 @@ pipeline {
                         enableDebugLogging: false,
                         failBuildOnNetworkError: false,
                         failBuildOnScanningErrors: false,
-                        //iqApplication: selectedApplication('webgoat'),
+                        iqApplication: selectedApplication('webgoat'),
                         iqInstanceId: 'nxiq',
                         iqOrganization: 'e10a8b63f64d40c49c492f5d5ad6eef6',
                         iqScanPatterns: [[scanPattern: '**/*.war']],

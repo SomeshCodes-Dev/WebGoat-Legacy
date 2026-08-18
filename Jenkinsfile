@@ -25,9 +25,9 @@ pipeline {
             }
         }
 
-        stage('Nexus IQ Scan'){
+        stage('Nexus IQ Scan') {
             steps {
-                script{
+                script {
                     def policyEvaluation = nexusPolicyEvaluation (
                         advancedProperties: '',
                         enableDebugLogging: false,
@@ -38,7 +38,7 @@ pipeline {
                         iqOrganization: 'e10a8b63f64d40c49c492f5d5ad6eef6',
                         iqScanPatterns: [[scanPattern: '**/*.war']],
                         iqStage: 'build',
-                        jobCredentialsId: 'sonatype',
+                        //jobCredentialsId: 'sonatypeIQ',
                         reachability: [
                             javaAnalysis: [
                                 enable: true
@@ -52,19 +52,26 @@ pipeline {
             }
         }
 
-stage("Publish to Repo"){
-    steps{
-            script {
-    nexusPublisher nexusInstanceId: 'nxrm3',
-    nexusRepositoryId: "maven-releases",
-    packages: [[$class: 'MavenPackage',
-        mavenAssetList: [[classifier: '', extension: 'war', filePath: "${ARTEFACT_NAME}"]],
-        mavenCoordinate: [artifactId: 'WebGoat', groupId: 'org.demo', 
-        packaging: 'war', version: "${BUILD_VERSION}"]]],
-        tagName: "${BUILD_TAG}"
+        stage("Publish to Repo") {
+            steps {
+                script {
+                    nexusPublisher nexusInstanceId: 'nxrm3',
+                        nexusRepositoryId: "maven-releases",
+                        packages: [[$class: 'MavenPackage',
+                            mavenAssetList: [[
+                                classifier: '',
+                                extension: 'war',
+                                filePath: "${ARTEFACT_NAME}"
+                            ]],
+                            mavenCoordinate: [
+                                artifactId: 'WebGoat',
+                                groupId: 'org.demo',
+                                packaging: 'war',
+                                version: "${BUILD_VERSION}"
+                            ]]],
+                        tagName: "${BUILD_TAG}"
+                }
             }
-}
-
         }
     }
 }

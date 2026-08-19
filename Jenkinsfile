@@ -35,7 +35,7 @@ pipeline {
                         failBuildOnScanningErrors: false,
                         iqApplication: selectedApplication('webgoat'),
                         iqInstanceId: 'nxiq',
-                        iqOrganization: 'e10a8b63f64d40c49c492f5d5ad6eef6',
+                        iqOrganization: 'eefbd10e3e2141f1892e577321253e28', 
                         iqScanPatterns: [[scanPattern: '**/*.war']],
                         iqStage: 'build',
                         //jobCredentialsId: 'sonatypeIQ',

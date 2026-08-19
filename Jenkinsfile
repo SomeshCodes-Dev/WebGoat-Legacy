@@ -57,7 +57,7 @@ pipeline {
             steps {
                 script {
                     nexusPublisher(
-                        nexusInstanceId: 'nxrm3',
+                        nexusInstanceId: 'sonatypenexus',
                         nexusRepositoryId: 'maven-releases',
                         packages: [[
                             $class: 'MavenPackage',
